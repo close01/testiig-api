@@ -93,7 +93,7 @@ app.post('/post/user', (req, res) => {
         lname:user.lname,
         auth:user.auth,
         id:user.id,
-        cpw:user.cpw,
+        cpw:user.cpw
         // img:imgurl
 
     });

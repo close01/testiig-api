@@ -40,6 +40,7 @@ app.post('/post/user', (req, res) => {
         auth:true,
         id:uuidv4(),
         cpw:[]
+        // img:null
     }
     let baseString = user.pw
     const CryptoJS = require('crypto-js');
@@ -72,6 +73,19 @@ app.post('/post/user', (req, res) => {
     user.pw = cipher
     // user.cpw.push(encryptedData)
     // user.pw = encryptedData
+//     const imgurl = null
+//     const storageRef=firebase.storage().ref(user.img.name).put(user.img);
+//   storageRef.on(`state_changed`,snapshot=>{
+//   this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+//     }, error=>{console.log(error.message)},
+//     ()=>{this.uploadValue=100;
+//         storageRef.snapshot.ref.getDownloadURL().then((url)=>{
+//             imgurl =url;
+//             console.log(imgurl)
+//           });
+//         }      
+//       );
+
     firestore.collection("users").doc(user.id).set({ 
         user: user.user,
         pw:user.pw,
@@ -79,7 +93,8 @@ app.post('/post/user', (req, res) => {
         lname:user.lname,
         auth:user.auth,
         id:user.id,
-        cpw:user.cpw
+        cpw:user.cpw,
+        // img:imgurl
 
     });
     res.json(user);
